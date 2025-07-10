@@ -1,11 +1,19 @@
-export default async function Page() {
-  const data = await fetch('https://api.vercel.app/blog')
-  const posts = await data.json()
+import Link from 'next/link';
+import styles from './page.module.css'
+
+export default async function HomePage() {
   return (
-      <ul>
-        {posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-  )
+      <div style={{ textAlign: "right" }}>
+        <Link href="/photos">
+          <button className={styles.button}>
+            Photos
+          </button>
+        </Link>
+        <Link href="/puzzle">
+          <button className={styles.button}>
+            Puzzle
+          </button>
+        </Link>
+      </div>
+  );
 }
