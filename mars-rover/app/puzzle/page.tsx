@@ -50,25 +50,29 @@ export default function Page() {
         const index2 = tilesArray.findIndex(tile => tile.id === id2);
         if (index1 === -1 || index2 === -1) return;
 
-        const newTiles = [...tilesArray];
+        const newTiles = tilesArray;
         [newTiles[index1], newTiles[index2]] = [newTiles[index2], newTiles[index1]];
         setTilesArray(newTiles);
     }
 
     return (
-        <div className={styles.container}>
-            {tilesArray.map((tile) => {
-                const posX = -tile.originalCol * 100;
-                const posY = -tile.originalRow * 100;
-                return (
-                    <div
-                        key={tile.id}
-                        onClick={() => handleSwap(tile.id)}
-                        className={`${styles.tilewrap} ${selectedTileID === tile.id ? styles.selected : ""}`}
-                        style={{ backgroundPosition: `${posX}% ${posY}%` }}
-                    ></div>
-                );
-            })}
+        <div className={styles.page}>
+            <h1 className={styles.title}>Make the Curiosity Rover back</h1>
+            <div className={styles.container}>
+                {tilesArray.map((tile) => {
+                    const posX = -tile.originalCol * 100;
+                    const posY = -tile.originalRow * 100;
+                    return (
+                        <div
+                            key={tile.id}
+                            onClick={() => handleSwap(tile.id)}
+                            className={`${styles.tilewrap} ${selectedTileID === tile.id ? styles.selected : ""}`}
+                            style={{ backgroundPosition: `${posX}% ${posY}%` }}
+                        ></div>
+                    );
+                })}
+            </div>
         </div>
+
     );
 }
