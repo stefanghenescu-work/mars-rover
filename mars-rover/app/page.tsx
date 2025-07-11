@@ -1,19 +1,14 @@
-import Link from 'next/link';
-import styles from './page.module.css'
-
-export default async function HomePage() {
-  return (
-      <div style={{ textAlign: "right" }}>
-        <Link href="/photos">
-          <button className={styles.button}>
-            Photos
-          </button>
-        </Link>
-        <Link href="/puzzle">
-          <button className={styles.button}>
-            Puzzle
-          </button>
-        </Link>
-      </div>
-  );
+export default function Home() {
+    return (
+        <>
+            <div className="container mx-auto px-4">
+                <h1>Hello word</h1>
+                <p>This is a content to make our page longer</p>
+                <div className="w-full h-screen bg-green-300"></div>
+                <p>
+                    Lorem Ipsum is simply dummy text ...
+                </p>
+            </div>
+        </>
+    );
 }

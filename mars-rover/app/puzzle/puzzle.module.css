@@ -1,22 +1,26 @@
 .container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    max-width: 400px;
+    gap: 1.5px;
+    max-width: 500px;
     margin: 0 auto;
 }
-
 .tilewrap {
-    background-color: #ccc;
-    padding: 20px;
-    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-image: url('/puzzle_rover.jpg');
+    background-size: 500% 500%;
+    background-position: center;
     cursor: pointer;
-    border-radius: 4px;
-    user-select: none;
-    font-size: 18px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .tilewrap.selected {
     background-color: #04AA6D;
     color: white;
+}
+
+.selected {
+    outline: 3px solid #04AA6D;
 }

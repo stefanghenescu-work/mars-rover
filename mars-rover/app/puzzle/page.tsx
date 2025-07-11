@@ -2,8 +2,14 @@
 import { useEffect, useState } from "react";
 import styles from "./puzzle.module.css";
 
+type Tile = {
+    id: number;
+    originalRow: number;
+    originalCol: number;
+};
+
 export default function Page() {
-    const [tilesArray, setTilesArray] = useState<{ id: number }[]>([]);
+    const [tilesArray, setTilesArray] = useState<Tile[]>([]);
     const [selectedTileID, setSelectedTileID] = useState<number | null>(null);
     const [tileSelected, setTileSelected] = useState(false);
 
@@ -12,16 +18,20 @@ export default function Page() {
     }, []);
 
     function generateTiles() {
-        let newTilesArray = [];
+        const tiles: Tile[] = [];
         for (let i = 0; i < 25; i++) {
-            newTilesArray.push({ id: i });
+            tiles.push({
+                id: i,
+                originalRow: Math.floor(i / 5),
+                originalCol: i % 5,
+            });
         }
-        // shuffle:
-        for (let j = newTilesArray.length - 1; j > 0; j--) {
+        // shuffle tiles
+        for (let j = tiles.length - 1; j > 0; j--) {
             const random = Math.floor(Math.random() * (j + 1));
-            [newTilesArray[j], newTilesArray[random]] = [newTilesArray[random], newTilesArray[j]];
+            [tiles[j], tiles[random]] = [tiles[random], tiles[j]];
         }
-        return newTilesArray;
+        return tiles;
     }
 
     function handleSwap(id: number) {
@@ -47,15 +57,18 @@ export default function Page() {
 
     return (
         <div className={styles.container}>
-            {tilesArray.map((tile) => (
-                <div
-                    key={tile.id}
-                    onClick={() => handleSwap(tile.id)}
-                    className={`${styles.tilewrap} ${selectedTileID === tile.id ? styles.selected : ""}`}
-                >
-                    {tile.id}
-                </div>
-            ))}
+            {tilesArray.map((tile) => {
+                const posX = -tile.originalCol * 100;
+                const posY = -tile.originalRow * 100;
+                return (
+                    <div
+                        key={tile.id}
+                        onClick={() => handleSwap(tile.id)}
+                        className={`${styles.tilewrap} ${selectedTileID === tile.id ? styles.selected : ""}`}
+                        style={{ backgroundPosition: `${posX}% ${posY}%` }}
+                    ></div>
+                );
+            })}
         </div>
     );
 }

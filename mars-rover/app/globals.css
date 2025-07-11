@@ -40,3 +40,35 @@ a {
     color-scheme: dark;
   }
 }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #ffffff;
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+.menu li a {
+  color: #000000;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu li a:hover,
+.menu li a:focus {
+  background-color: #da0021;
+  color: white;
+}
+
+
